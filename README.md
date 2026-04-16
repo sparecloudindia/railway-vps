@@ -1,13 +1,13 @@
 <div align="center">
-  <img src="https://githubusercontent.com" width="120" alt="Core Logo">
+  <img src="https://githubusercontent.com" width="150" alt="Core Logo">
   
   # ⚡ RAILWAY VPS ULTIMATE EDITION ⚡
   ### [ HIGH-PERFORMANCE PTERODACTYL ALL-IN-ONE STACK ]
   
   <p align="center">
-    <img src="https://shields.io" />
-    <img src="https://shields.io" />
-    <img src="https://shields.io" />
+    <img src="https://shields.io" alt="Version" />
+    <img src="https://shields.io" alt="Security" />
+    <img src="https://shields.io" alt="RAM" />
   </p>
 </div>
 
@@ -56,8 +56,8 @@ Once the build is "Active", the Panel is running, but you can't login yet. You m
 3.  Follow the prompts:
     *   **Is this user an administrator?** Type `yes`.
     *   **Email:** Use a real email.
-    *   **Username:** Your hacker name.
-    *   **Password:** Keep it strong!
+    *   **Username:** Your name.
+    *   **Password:** Use a strong password.
 
 ### Phase 4: Wings Setup (The Engine)
 1.  Login to your Panel using the URL generated in Phase 2.
@@ -68,7 +68,7 @@ Once the build is "Active", the Panel is running, but you can't login yet. You m
     ```bash
     nano /etc/pterodactyl/config.yml
     ```
-6.  Paste the token, save (Ctrl+O, Enter, Ctrl+X), and Wings will attempt to start.
+6.  Paste the token and save.
 
 ---
 
@@ -84,4 +84,3 @@ By default, Railway containers are "read-only" after restart. **To save your gam
   <p>© 2026 StartupGaming</p>
   <p><i>build with 💖 by bot dev team</i></p>
 </div>
-
