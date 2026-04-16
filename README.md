@@ -1,52 +1,87 @@
 <div align="center">
-  <img src="https://railway.app" width="100" height="100" alt="Logo">
-  <h1>🚀 RAILWAY ULTIMATE VPS</h1>
-  <p><b>The Most Powerful All-in-One Pterodactyl & Ubuntu Environment on Railway</b></p>
-
-  [![Deploy on Railway](https://railway.app)](https://railway.app)
-
-  ![Ubuntu](https://shields.io)
-  ![Docker](https://shields.io)
-  ![Status](https://shields.io)
+  <img src="https://githubusercontent.com" width="120" alt="Core Logo">
+  
+  # ⚡ RAILWAY VPS ULTIMATE EDITION ⚡
+  ### [ HIGH-PERFORMANCE PTERODACTYL ALL-IN-ONE STACK ]
+  
+  <p align="center">
+    <img src="https://shields.io" />
+    <img src="https://shields.io" />
+    <img src="https://shields.io" />
+  </p>
 </div>
 
 ---
 
-## ⚡ Why This Template?
-This isn't just a basic Ubuntu container. It’s a **pre-configured beast** designed to bypass common restrictions and get your Game Panel running in minutes.
+## 📖 PROJECT OVERVIEW
+This repository contains a highly optimized **Ubuntu 22.04 LTS** environment designed to run on **Railway.app**. It bypasses standard container limitations to deploy a full **Pterodactyl Panel** and **Wings** daemon in a single instance. 
 
-- **🔥 Hyper-Performance:** Optimized for Intel Xeon / AMD EPYC environments.
-- **🛠️ Integrated Stack:** Nginx, PHP 8.1, MariaDB, Redis, and Wings — all in one repo.
-- **🛡️ Full Root:** Complete `sudo` control with automated `entrypoint` execution.
-- **🎮 Game Ready:** Designed specifically for Pterodactyl-based hosting.
+> **"Designed for speed, built for stability."**
 
 ---
 
-## 🏗️ Architecture Specs
-
-| Feature | Technology |
-| :--- | :--- |
-| **Core OS** | Ubuntu 22.04 LTS (Jammy) |
-| **Web Server** | Nginx (Optimized for Ptero) |
-| **Engine** | PHP 8.1 FPM |
-| **Database** | MariaDB 10.x |
-| **Caching** | Redis Server |
-| **Daemon** | Pterodactyl Wings (Latest) |
+## 🛠️ THE TECHNOLOGY STACK
+*   **Operating System:** Ubuntu 22.04 (Jammy Jellyfish)
+*   **Web Engine:** Nginx (High Performance)
+*   **Back-end:** PHP 8.1 FPM
+*   **Database:** MariaDB 10.6 (MySQL Compatible)
+*   **Cache:** Redis Server 6.x
+*   **Daemon:** Pterodactyl Wings (Latest Build)
 
 ---
 
-## 🚀 Instant Deployment Guide
+## 🚀 STEP-BY-STEP SETUP GUIDE (THE LONG READ)
 
-### 1. Fork & Deploy
-Click the **Deploy on Railway** button above or link this repo manually to a new Railway project.
+Follow these exact steps to ensure your VPS and Game Panel run without errors.
 
-### 2. Configure Networking
-Go to **Settings > Networking** in Railway:
-- Click **Generate Domain**.
-- Set **Expose Port** to `80` (Primary Panel Port).
+### Phase 1: Deployment
+1.  **Fork the Repo:** Click the `Fork` button at the top right of this page.
+2.  **Connect to Railway:** Go to [Railway.app](https://railway.app), start a new project, and select your forked GitHub repository.
+3.  **Wait for Build:** Railway will read the `Dockerfile`. This takes about 5 minutes as it installs PHP, MySQL, and Nginx.
 
-### 3. Create God-User (Admin)
-Once the build is green, open the **Deploy Logs/Terminal** and run:
-```bash
-cd /var/www/pterodactyl
-php artisan p:user:make
+### Phase 2: Networking (Crucial)
+1.  Go to the **Settings** tab of your project in Railway.
+2.  Scroll down to **Networking**.
+3.  Click **Generate Domain** (You will get a link like `xyz.up.railway.app`).
+4.  Set **Expose Port** to `80`. This allows you to see the Panel in your browser.
+
+### Phase 3: Identity & Security (Admin Creation)
+Once the build is "Active", the Panel is running, but you can't login yet. You must create an admin:
+1.  Open the **Deploy Logs** or **Terminal** in Railway.
+2.  Type the following command:
+    ```bash
+    cd /var/www/pterodactyl
+    php artisan p:user:make
+    ```
+3.  Follow the prompts:
+    *   **Is this user an administrator?** Type `yes`.
+    *   **Email:** Use a real email.
+    *   **Username:** Your hacker name.
+    *   **Password:** Keep it strong!
+
+### Phase 4: Wings Setup (The Engine)
+1.  Login to your Panel using the URL generated in Phase 2.
+2.  Go to **Admin Settings** > **Nodes** > **Create New**.
+3.  Fill in the details (Use your Railway domain for the FQDN).
+4.  Copy the **Configuration Token** provided by the Panel.
+5.  In your Railway Terminal, create the config:
+    ```bash
+    nano /etc/pterodactyl/config.yml
+    ```
+6.  Paste the token, save (Ctrl+O, Enter, Ctrl+X), and Wings will attempt to start.
+
+---
+
+## 📁 PERSISTENT STORAGE (IMPORTANT!)
+By default, Railway containers are "read-only" after restart. **To save your game data forever**, you MUST:
+1. Go to **Settings** > **Volumes**.
+2. Mount a volume to `/var/lib/mysql` (for database).
+3. Mount a volume to `/var/lib/pterodactyl` (for game files).
+
+---
+
+<div align="center">
+  <p>© 2026 StartupGaming</p>
+  <p><i>build with 💖 by bot dev team</i></p>
+</div>
+
