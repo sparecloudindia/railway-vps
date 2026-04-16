@@ -1,86 +1,185 @@
 <div align="center">
-  <img src="https://githubusercontent.com" width="150" alt="Core Logo">
-  
-  # ⚡ RAILWAY VPS ULTIMATE EDITION ⚡
-  ### [ HIGH-PERFORMANCE PTERODACTYL ALL-IN-ONE STACK ]
-  
-  <p align="center">
-    <img src="https://shields.io" alt="Version" />
-    <img src="https://shields.io" alt="Security" />
-    <img src="https://shields.io" alt="RAM" />
-  </p>
+
+# ⚡ RAILWAY VPS — ULTIMATE MODE ⚡
+### Full Pterodactyl Panel + Wings • Single Deployment • High Performance
+
+<img src="https://githubusercontent.com" width="120" alt="logo"/>
+
+<p>
+  <img src="https://img.shields.io/badge/Ubuntu-22.04-E95420?style=for-the-badge&logo=ubuntu" />
+  <img src="https://img.shields.io/badge/Pterodactyl-Latest-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Railway-Compatible-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Performance-Optimized-red?style=for-the-badge" />
+</p>
+
+<b>🚀 Run a full game hosting stack on Railway — no external VPS required</b>
+
 </div>
 
 ---
 
-## 📖 PROJECT OVERVIEW
-This repository contains a highly optimized **Ubuntu 22.04 LTS** environment designed to run on **Railway.app**. It bypasses standard container limitations to deploy a full **Pterodactyl Panel** and **Wings** daemon in a single instance. 
+## 🧠 OVERVIEW
 
-> **"Designed for speed, built for stability."**
+This project transforms Railway into a **pseudo-VPS environment** capable of running:
 
----
+- ⚡ Pterodactyl Panel  
+- ⚡ Wings Daemon  
+- ⚡ MariaDB + Redis  
+- ⚡ Nginx + PHP-FPM  
 
-## 🛠️ THE TECHNOLOGY STACK
-*   **Operating System:** Ubuntu 22.04 (Jammy Jellyfish)
-*   **Web Engine:** Nginx (High Performance)
-*   **Back-end:** PHP 8.1 FPM
-*   **Database:** MariaDB 10.6 (MySQL Compatible)
-*   **Cache:** Redis Server 6.x
-*   **Daemon:** Pterodactyl Wings (Latest Build)
+All inside **one deployment**.
+
+> You are bending Railway to act like a VPS.
 
 ---
 
-## 🚀 STEP-BY-STEP SETUP GUIDE (THE LONG READ)
+## 🔥 FEATURES
 
-Follow these exact steps to ensure your VPS and Game Panel run without errors.
-
-### Phase 1: Deployment
-1.  **Fork the Repo:** Click the `Fork` button at the top right of this page.
-2.  **Connect to Railway:** Go to [Railway.app](https://railway.app), start a new project, and select your forked GitHub repository.
-3.  **Wait for Build:** Railway will read the `Dockerfile`. This takes about 5 minutes as it installs PHP, MySQL, and Nginx.
-
-### Phase 2: Networking (Crucial)
-1.  Go to the **Settings** tab of your project in Railway.
-2.  Scroll down to **Networking**.
-3.  Click **Generate Domain** (You will get a link like `xyz.up.railway.app`).
-4.  Set **Expose Port** to `80`. This allows you to see the Panel in your browser.
-
-### Phase 3: Identity & Security (Admin Creation)
-Once the build is "Active", the Panel is running, but you can't login yet. You must create an admin:
-1.  Open the **Deploy Logs** or **Terminal** in Railway.
-2.  Type the following command:
-    ```bash
-    cd /var/www/pterodactyl
-    php artisan p:user:make
-    ```
-3.  Follow the prompts:
-    *   **Is this user an administrator?** Type `yes`.
-    *   **Email:** Use a real email.
-    *   **Username:** Your name.
-    *   **Password:** Use a strong password.
-
-### Phase 4: Wings Setup (The Engine)
-1.  Login to your Panel using the URL generated in Phase 2.
-2.  Go to **Admin Settings** > **Nodes** > **Create New**.
-3.  Fill in the details (Use your Railway domain for the FQDN).
-4.  Copy the **Configuration Token** provided by the Panel.
-5.  In your Railway Terminal, create the config:
-    ```bash
-    nano /etc/pterodactyl/config.yml
-    ```
-6.  Paste the token and save.
+- 🚀 All-in-One Deployment (Panel + Wings)
+- ⚙️ Optimized Stack (Low Overhead)
+- 💾 Persistent Storage Ready
+- 🌐 Railway Networking Compatible
+- 🔐 Secure Admin Setup
+- ⚡ Fast Boot + Stable Runtime
 
 ---
 
-## 📁 PERSISTENT STORAGE (IMPORTANT!)
-By default, Railway containers are "read-only" after restart. **To save your game data forever**, you MUST:
-1. Go to **Settings** > **Volumes**.
-2. Mount a volume to `/var/lib/mysql` (for database).
-3. Mount a volume to `/var/lib/pterodactyl` (for game files).
+## 🏗️ ARCHITECTURE
+
+```
+[ User ]
+   ↓
+[ NGINX ]
+   ↓
+[ PHP-FPM ]
+   ↓
+[ Pterodactyl Panel ]
+   ↓
+ ├── MariaDB
+ ├── Redis
+ └── Wings
+```
+
+---
+
+## 🛠️ STACK
+
+| Layer        | Technology |
+|-------------|-----------|
+| OS          | Ubuntu 22.04 |
+| Web Server  | Nginx |
+| Backend     | PHP 8.1 |
+| Database    | MariaDB 10.6 |
+| Cache       | Redis |
+| Daemon      | Wings |
+| Platform    | Railway |
+
+---
+
+## 🚀 DEPLOYMENT
+
+### 1. Fork & Deploy
+- Fork this repository  
+- Go to Railway  
+- Create new project → Deploy from GitHub  
+- Wait for build (~5 minutes)
+
+---
+
+### 2. Networking (IMPORTANT)
+
+- Go to **Settings → Networking**
+- Click **Generate Domain**
+- Set:
+
+```
+Expose Port: 80
+```
+
+---
+
+### 3. Create Admin
+
+Open Railway terminal:
+
+```
+cd /var/www/pterodactyl
+php artisan p:user:make
+```
+
+Fill:
+- Admin → yes  
+- Email → real email  
+- Username → anything  
+- Password → strong  
+
+---
+
+### 4. Configure Wings
+
+In Panel:
+- Admin → Nodes → Create Node  
+- Use Railway domain as FQDN  
+- Copy configuration token  
+
+Then run:
+
+```
+nano /etc/pterodactyl/config.yml
+```
+
+Paste → Save → Exit
+
+---
+
+## 💾 PERSISTENT STORAGE (CRITICAL)
+
+Railway resets data without volumes.
+
+Go to **Settings → Volumes** and add:
+
+| Path | Purpose |
+|------|--------|
+| /var/lib/mysql | Database |
+| /var/lib/pterodactyl | Server Files |
+
+---
+
+## ⚡ PERFORMANCE NOTES
+
+- Railway is not a full VPS  
+- Limited CPU and RAM  
+- Best for:
+  - Development  
+  - Small hosting  
+  - Testing environments  
+
+---
+
+## 🧨 TROUBLESHOOTING
+
+| Issue | Cause |
+|------|------|
+| Panel not loading | Port not exposed |
+| Login fails | Admin not created |
+| Wings offline | Configuration error |
+| Data lost | No volumes |
+| Slow performance | Resource limits |
+
+---
+
+## 🧠 FINAL NOTE
+
+This setup works only with proper execution.
+
+Break steps → break system  
+Follow correctly → full hosting stack on Railway
 
 ---
 
 <div align="center">
-  <p>© 2026 StartupGaming</p>
-  <p><i>build with 💖 by bot dev team</i></p>
+
+### ⚡ StartupGaming ⚡  
+<i>No limits. Only execution.</i>
+
 </div>
